@@ -58,7 +58,28 @@ parsed_data = JSON.parse(dark_sky_raw_data)
 # {"time"=>1674075600, "summary"=>"Overcast", "icon"=>"cloudy", "precipIntensity"=>0, "precipProbability"=>0, "temperature"=>36.69, "apparentTemperature"=>32.6, "dewPoint"=>31.06, "humidity"=>0.8, "pressure"=>1015.1, "windSpeed"=>4.98, "windGust"=>7.54, "windBearing"=>78, "cloudCover"=>0.98, "uvIndex"=>0, "visibility"=>10, "ozone"=>331.5}
 #p parsed_data.fetch("hourly").fetch("data").length
 
-for x in 0..(parsed_data.fetch("hourly").fetch("data").length-1) do
-  time_at_x = Time.at(parsed_data.fetch("hourly").fetch("data")[x].fetch("time"))
-  p time_at_x
+# for x in 0..(parsed_data.fetch("hourly").fetch("data").length-1) do
+#   time_at_x = Time.at(parsed_data.fetch("hourly").fetch("data")[x].fetch("time"))
+#   p time_at_x
+# end
+
+#p parsed_data.fetch("hourly").fetch("data")[0].fetch("temperature").to_s
+
+p "It is currently " + (parsed_data.fetch("hourly").fetch("data")[0].fetch("temperature").to_s) + "°F."
+p "Next hour: "+ (parsed_data.fetch("hourly").fetch("data")[1].fetch("summary").to_s)
+
+y = 0
+for x in 0..12 do
+  precipProbability_x = (parsed_data.fetch("hourly").fetch("data")[x].fetch("precipProbability"))
+  if precipProbability_x >0.10 then
+    y +=1
+  end
+  # p precipProbability_x
+  # p y
+end
+
+if y>=1 then
+  p "You might want to carry an umbrella!"
+else
+  p "You probably won't need an umbrella today."
 end
