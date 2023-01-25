@@ -1,12 +1,12 @@
 # get location from user
-# p "Where are you located?"
+p "Where are you located?"
 
-# user_location = gets.chomp
+user_location = gets.chomp
 
-# p user_location
+p user_location
 
 # hard code location for now
-user_location = "Chicago"
+# user_location = "Chicago"
 
 
 # get lat/long from google maps
